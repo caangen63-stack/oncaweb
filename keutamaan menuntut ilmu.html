@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IslamiCore - Futuristik Nav</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset & Base Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --neon-blue: #00f2ff;
+            --deep-space: #05060a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border-glass: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--deep-space);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* Background efek luar angkasa sederhana */
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 242, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(0, 242, 255, 0.05) 0%, transparent 40%);
+        }
+
+        /* Navbar Container */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6%;
+            height: 80px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* Logo Area */
+        .logo {
+            font-weight: 800;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        /* Nav Links */
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            height: 100%;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        /* Hover Effect Line */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 25px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover::after, 
+        .nav-item.active a::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-blue);
+        }
+
+        /* Dropdown Styling */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(10, 11, 16, 0.95);
+            border: 1px solid var(--border-glass);
+            min-width: 220px;
+            padding: 1rem 0;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .dropdown-menu li a {
+            padding: 0.7rem 1.5rem;
+            display: block;
+            text-transform: none;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            transition: 0.3s;
+        }
+
+        .dropdown-menu li a::after { display: none; } /* Hilangkan garis bawah di dropdown */
+
+        .dropdown-menu li a:hover {
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--neon-blue);
+            padding-left: 1.8rem;
+        }
+
+        /* Content Placeholder */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 80px);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">ISLAMI<span>CORE</span></div>
+        
+        <ul class="nav-links">
+            <li class="nav-item active"><a href="index.html">Beranda</a></li>
+        </ul>
+        <div style="width: 150px; text-align: right;">
+            <small style="color: var(--neon-blue); font-size: 0.7rem; letter-spacing: 2px;">SYSTEM ACTIVE</small>
+        </div>
+    </nav>
+    <div class="hero">
+        <h1>Keutamaan Menuntut Ilmu</h1>
+        <p style="color: rgba(255,255,255,0.5); letter-spacing: 5px; text-transform: uppercase;"><p/>
+    </div>
+	 <h1>dzikir setelah sholat</h1>
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IslamiCore - Keutamaan Menuntut Ilmu</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --neon-blue: #00f2ff;
+            --deep-space: #05060a;
+            --card: #101521;
+            --text: #e8edf5;
+            --muted: #a8b4c7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 25px 15px;
+            background: var(--deep-space);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+        }
+
+        header {
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        header h1 {
+            color: var(--neon-blue);
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--muted);
+        }
+
+        main {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .materi {
+            background: var(--card);
+            border: 1px solid #263449;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 22px;
+            box-shadow: 0 0 15px #00f2ff0a;
+        }
+
+        .materi h1 {
+            color: var(--neon-blue);
+            font-size: 21px;
+            margin-top: 0;
+            border-bottom: 1px solid #263449;
+            padding-bottom: 12px;
+        }
+
+        .materi h2 {
+            color: #9cecf2;
+            font-size: 17px;
+        }
+
+        .arab {
+            font-family: 'Amiri', serif;
+            font-size: 27px;
+            line-height: 2.2;
+            text-align: right;
+            direction: rtl;
+            color: #ffffff;
+            margin: 22px 0;
+        }
+
+        .arti {
+            color: var(--text);
+        }
+
+        .latin {
+            color: #9cecf2;
+            font-style: italic;
+        }
+
+        .catatan {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .daftar {
+            padding-left: 23px;
+        }
+
+        .daftar li {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 25px 10px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>✨ Keutamaan Menuntut Ilmu</h1>
+    <p>Ilmu menerangi kehidupan, memperbaiki akhlak, dan membimbing manusia menuju kebaikan.</p>
+</header>
+
+<main>
+
+    <section class="materi">
+        <h1>1. Pengertian Keutamaan Menuntut Ilmu</h1>
+
+        Keutamaan menuntut ilmu adalah berbagai kebaikan, kemuliaan, dan manfaat yang diperoleh seseorang ketika berusaha mencari pengetahuan yang bermanfaat. Dalam Islam, ilmu memiliki kedudukan yang penting karena membantu manusia mengenal Allah SWT, menjalankan ibadah dengan benar, serta membedakan perbuatan yang baik dan buruk.
+
+        <p>Menuntut ilmu bukan hanya tentang mendapatkan nilai yang tinggi atau meraih kesuksesan dunia, tetapi juga tentang memperbaiki diri, menjaga akhlak, dan mengamalkan pengetahuan untuk memberikan manfaat kepada orang lain.</p>
+    </section>
+
+    <section class="materi">
+        <h1>2. Allah Mengangkat Derajat Orang Berilmu</h1>
+
+        <h2>QS. Al-Mujadilah Ayat 11</h2>
+
+        <div class="arab">
+            يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ
+            وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ
+        </div>
+
+        <p class="arti">
+            Artinya: "Allah akan mengangkat derajat orang-orang yang beriman di antara kamu dan orang-orang yang diberi ilmu beberapa derajat."
+            (QS. Al-Mujadilah: 11, bagian akhir ayat)
+        </p>
+
+        <p>
+            Penjelasan: Ayat ini menunjukkan kemuliaan orang-orang yang beriman dan memiliki ilmu. Oleh karena itu, kita hendaknya rajin belajar, menghormati ilmu, dan tidak menyombongkan pengetahuan yang dimiliki.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h1>3. Ilmu Menjadi Jalan Menuju Kebaikan</h1>
+
+        <h2>QS. Az-Zumar Ayat 9</h2>
+
+        <div class="arab">
+            قُلْ هَلْ يَسْتَوِي الَّذِينَ يَعْلَمُونَ
+            وَالَّذِينَ لَا يَعْلَمُونَ
+        </div>
+
+        <p class="arti">
+            Artinya: "Katakanlah, apakah sama orang-orang yang mengetahui dengan orang-orang yang tidak mengetahui?"
+            (QS. Az-Zumar: 9, bagian akhir ayat)
+        </p>
+
+        <p>
+            Penjelasan: Ayat ini mengingatkan kita tentang pentingnya ilmu. Dengan pengetahuan, seseorang dapat memahami sesuatu dengan lebih baik, mengambil keputusan secara bijaksana, dan melakukan kebaikan berdasarkan pemahaman yang benar.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h1>4. Menuntut Ilmu Memudahkan Jalan ke Surga</h1>
+
+        <div class="arab">
+            وَمَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا
+            سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ
+        </div>
+
+        <p class="arti">
+            Artinya: "Barang siapa menempuh jalan untuk mencari ilmu, Allah akan memudahkan baginya jalan menuju surga."
+        </p>
+
+        <p class="catatan">
+            Sumber: HR. Muslim no. 2699.
+        </p>
+
+        <p>
+            Penjelasan: Hadis ini menjelaskan besarnya keutamaan mencari ilmu. Seorang Muslim hendaknya belajar dengan niat yang baik, bersungguh-sungguh, serta berusaha mengamalkan ilmu yang telah diperoleh.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h1>5. Ilmu Merupakan Warisan Para Nabi</h1>
+
+        <p>
+            Rasulullah ﷺ menjelaskan bahwa para nabi tidak mewariskan harta sebagai warisan utama mereka, melainkan ilmu. Orang yang mengambil dan mempelajari ilmu tersebut memperoleh bagian yang berharga dari warisan kenabian.
+        </p>
+
+        <p class="catatan">
+            Dalil: HR. Abu Dawud no. 3641 dan At-Tirmidzi no. 2682, tentang keutamaan ilmu dan para ulama sebagai pewaris para nabi.
+        </p>
+
+        <p>
+            Penjelasan: Ilmu agama yang bersumber dari Al-Qur'an dan sunnah sangat berharga karena membimbing manusia untuk beribadah dengan benar dan berakhlak mulia.
+        </p>
+    </section>
+
+    <section class="materi">
+        <h1>6. Keutamaan Menuntut Ilmu</h1>
+
+        <ul class="daftar">
+            <li>Mendapatkan pahala ketika belajar dengan niat yang benar.</li>
+            <li>Memperoleh pemahaman yang lebih baik tentang ajaran Islam.</li>
+            <li>Membantu membedakan kebenaran dan kebatilan.</li>
+            <li>Meningkatkan keimanan dan ketakwaan kepada Allah SWT.</li>
+            <li>Membentuk pribadi yang bijaksana dan bertanggung jawab.</li>
+            <li>Memudahkan seseorang dalam menjalankan ibadah dengan benar.</li>
+            <li>Membuka kesempatan untuk meraih prestasi dan mengembangkan kemampuan.</li>
+            <li>Menjadi sarana untuk membantu dan memberikan manfaat kepada masyarakat.</li>
+        </ul>
+    </section>
+
+    <section class="materi">
+        <h1>7. Contoh Mengamalkan Ilmu</h1>
+
+        <ul class="daftar">
+            <li>Mengajarkan bacaan Al-Qur'an kepada orang lain sesuai kemampuan.</li>
+            <li>Menggunakan ilmu yang diperoleh untuk menyelesaikan masalah secara baik.</li>
+            <li>Menghormati guru dan mendengarkan nasihat yang bermanfaat.</li>
+            <li>Menerapkan kejujuran ketika mengerjakan tugas dan ujian.</li>
+            <li>Membantu teman memahami pelajaran tanpa mengejeknya.</li>
+            <li>Menggunakan teknologi untuk mencari pengetahuan yang bermanfaat.</li>
+            <li>Menjaga sikap rendah hati meskipun memiliki banyak pengetahuan.</li>
+        </ul>
+    </section>
+
+    <section class="materi">
+        <h1>8. Adab agar Ilmu Menjadi Berkah</h1>
+
+        <ul class="daftar">
+            <li>Meluruskan niat karena Allah SWT.</li>
+            <li>Berdoa sebelum memulai kegiatan belajar.</li>
+            <li>Bersungguh-sungguh dan sabar dalam belajar.</li>
+            <li>Menghormati guru, orang tua, dan teman.</li>
+            <li>Tidak merasa paling pintar atau merendahkan orang lain.</li>
+            <li>Memeriksa kebenaran informasi sebelum menyebarkannya.</li>
+            <li>Mengamalkan ilmu dan menggunakannya untuk kebaikan.</li>
+        </ul>
+    </section>
+
+    <section class="materi">
+        <h1>9. Kesimpulan</h1>
+
+        Menuntut ilmu memiliki banyak keutamaan dalam Islam. Ilmu dapat mengangkat derajat manusia, membimbingnya menuju kebaikan, dan menjadi jalan menuju surga dengan izin Allah SWT. Oleh karena itu, kita harus rajin belajar, menjaga adab, serta mengamalkan ilmu yang bermanfaat.
+
+        <p>Ilmu yang bermanfaat bukan sekadar ilmu yang kita ketahui, melainkan ilmu yang memperbaiki diri dan membawa kebaikan bagi sesama.</p>
+    </section>
+
+</main>
+
+<footer>
+    <p>📚 "Belajarlah dengan rendah hati, amalkan dengan tulus."</p>
+    <p>Semoga Allah SWT menganugerahkan ilmu yang bermanfaat dan memberkahi usaha kita. Aamiin.</p>
+</footer>
+
+</body>
+</html>
+
+</body>
+</html>
